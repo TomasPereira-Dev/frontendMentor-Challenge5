@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background-color:hsl(0, 0%, 86%);
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-container{
+    background-color: hsl(0, 0%, 100%);
+    padding: 2em;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 100px;
+}
+
+.inputs-container{
+    display: flex;
+    padding-bottom: 2em;
+    border-bottom: 1px solid hsl(0, 0%, 86%);
+}
+
+input{
+    font-size: 2em;
+}
+
+button{
+    border-radius: 50%;
+    border: none;
+    padding: 1em;
+    background-color: hsl(259, 100%, 65%);
+}
