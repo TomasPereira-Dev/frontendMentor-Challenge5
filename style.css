@@ -104,7 +104,7 @@ button:hover{
     }
 
     .input-container{
-        width: 48%;
+        width: 45%;
     }
     
     input{
@@ -117,6 +117,7 @@ button:hover{
         align-items: center;
         bottom: -25%;
         right: 50%;
+        margin-right: -23px;
         padding: .5em;
         border-radius: 50%;
     }
@@ -126,7 +127,12 @@ button:hover{
     }
 
     .results-container{
-        font-size: 3em;
-        overflow: hidden;
+        font-size: 4.5em;
+    }
+}
+
+@media(max-width: 425px){
+    .results-container{
+        font-size: 4em;
     }
 }
