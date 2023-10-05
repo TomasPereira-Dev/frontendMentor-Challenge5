@@ -36,6 +36,9 @@ body{
 
 .inputs-container{
     position: relative;
+}
+
+.inputs-container form{
     display: flex;
     gap: 2em;
     padding-bottom: 3em;
@@ -48,6 +51,7 @@ body{
     flex-direction: column;
     gap: .5em;
     width: 10em;
+    
 }
 
 .input-container p{
@@ -64,9 +68,35 @@ input{
     outline: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none;
+}
+
+input[type=number] { 
+    -moz-appearance: textfield;
+}
+
 input:focus{
     border: 1px solid hsl(259, 100%, 65%);
+    caret-color: hsl(259, 100%, 65%);
 }
+
+.day-input:out-of-range{
+    border: 1px solid hsl(0, 100%, 67%);
+    caret-color: hsl(0, 100%, 67%);
+}
+
+.month-input:out-of-range{
+    border: 1px solid hsl(0, 100%, 67%);
+    caret-color: hsl(0, 100%, 67%);
+}
+
+.year-input[aria-invalid="true"]{
+    border: 1px solid hsl(0, 100%, 67%);
+    caret-color: hsl(0, 100%, 67%);
+}
+
 
 button{
     position: absolute;
