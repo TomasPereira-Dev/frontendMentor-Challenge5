@@ -11,10 +11,9 @@ const presentYear = new Date().getFullYear();
 const thirthyDayMonths = [4,6,9,11];
 
 const dayErrorMessage = document.createElement("p");
-dayErrorMessage.textContent = "Must be a valid date";
+dayErrorMessage.textContent = "Must be a valid day";
 dayInput.addEventListener("input", () => {
     if(dayInput.value < 1 || dayInput.value > 31){
-        dayErrorMessage.textContent = "Must be a valid day";
         dayContainer.append(dayErrorMessage);
     }else{
         dayErrorMessage.remove()
@@ -25,7 +24,7 @@ dayInput.addEventListener("input", () => {
 const monthErrorMessage = document.createElement("p");
 monthErrorMessage.textContent = "Must be a valid month";
 monthInput.addEventListener("input", () =>{
-    if(monthInput.value > 12 || monthInput.value <= 0 && monthInput.value){
+    if(monthInput.value > 12 || monthInput.value <= 0){
         monthContainer.append(monthErrorMessage);
     }else{
         monthErrorMessage.remove();
@@ -42,12 +41,14 @@ yearInput.addEventListener("input", () =>{
     }
 });
 
+const inputsArr = Array.from(inputs);
+const requiredError = document.createElement("p");
+requiredError.textContent = "This field is required";
 
 const dayAndMonthErrorMessage = document.createElement("p");
 dayAndMonthErrorMessage.textContent = "Must be a valid date"; 
-submitBtn.addEventListener("click", (event) => {
-    event.preventDefault();
-    for(let j = 0; j < thirthyDayMonths.length; j++){ // funciona si lo haces al enviar el form, no antes
+submitBtn.addEventListener("click", () => {
+    for(let j = 0; j < thirthyDayMonths.length; j++){ 
         console.log(`loop ${j}`)
         if(monthInput.value == thirthyDayMonths[j]){
             if(dayInput.value == 31){
@@ -57,5 +58,18 @@ submitBtn.addEventListener("click", (event) => {
             }
         }
     }
+
+    for(let k = 0; k < inputsArr.length; k++){
+        let classes = inputsArr[k].classList;
+        if(!inputsArr[k].value && classes.contains("is-required")){
+            inputsArr[k].parentElement.appendChild(requiredError.cloneNode(true));
+            classes.toggle("is-required");
+        }else if(inputsArr[k].value && !classes.contains("is-required")){
+            classes.toggle("is-required");
+            inputsArr[k].parentElement.lastChild.remove();
+        }
+        
+    }
+
 })
 
