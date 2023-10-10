@@ -8,6 +8,8 @@ const yearContainer = document.querySelector(".year-input-container");
 const submitBtn = document.querySelector(".submit-btn");
 
 const presentYear = new Date().getFullYear();
+const presentMonth = new Date().getMonth() + 1; // los meses funcionan como un array de 12 indices, desde 0 a 11
+const presentDay = new Date().getDate();
 const thirthyDayMonths = [4,6,9,11];
 
 const dayErrorMessage = document.createElement("p");
@@ -70,6 +72,38 @@ submitBtn.addEventListener("click", () => {
         }
         
     }
+    chronologicalAge()
 
 })
+
+const chronologicalAge = () => {
+    const chronoYears = presentYear - yearInput.value;
+    const chronoMonths =  presentMonth - monthInput.value;
+    const chronoDays = presentDay - dayInput.value;
+    let negativeChronoDays =  presentDay + 30;
+    let negativeChronoMonths = presentMonth + 12;
+    let negativeChronoYears =  chronoYears - 1;
+
+
+    if(presentMonth < monthInput.value  && presentDay < dayInput.value){
+        console.log(`final result: ${negativeChronoDays - dayInput.value} days, 
+        ${negativeChronoMonths - monthInput.value} months,
+        ${negativeChronoYears} years`)
+    }else if(presentMonth < monthInput.value  && presentDay >= dayInput.value){
+        console.log(`final result: ${chronoDays} days, 
+        ${negativeChronoMonths - monthInput.value} months, 
+        ${negativeChronoYears} years`)
+    }else if(presentMonth >= monthInput.value  && presentDay < dayInput.value){
+        console.log(`final result: ${negativeChronoDays - dayInput.value} days, 
+        ${chronoMonths} months, 
+        ${chronoYears} years`)
+    }else{
+        console.log(`final result: ${chronoDays} days, 
+        ${chronoMonths} months, 
+        ${chronoYears} years`)
+    } 
+    
+}
+
+
 
