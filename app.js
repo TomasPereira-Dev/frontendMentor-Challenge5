@@ -95,46 +95,83 @@ const chronologicalAge = () => {
     let monthNumber = 0;
     let yearNumber = 0;
 
-    const daysIntervalAnimation = setInterval(() => {
-        daysNumberParagraph.innerHTML = `<p>${dayNumber} <span>days</span></p>`;
-        dayNumber += 1;
-        if (dayNumber > chronoDays || dayNumber > calculatedDays) clearInterval(daysIntervalAnimation);
-    }, 100, chronoDays, calculatedDays); 
-
-    const monthsIntervalAnimation = setInterval(() => {
-        monthsNumberParagraph.innerHTML = `<p>${monthNumber} <span>months</span></p>`;
-        monthNumber += 1;
-        if(monthNumber > chronoMonths || monthNumber > calculatedMonths) clearInterval(monthsIntervalAnimation);
-    }, 100, chronoMonths, calculatedMonths); 
-
-    const yearsIntervalAnimation = setInterval(() => {
-        yearsNumberParagraph.innerHTML = `<p>${yearNumber} <span>years</span></p>`;
-        yearNumber += 1;
-        if(yearNumber > chronoYears) clearInterval(yearsIntervalAnimation);
-    }, 100); 
 
     if(presentMonth < monthInput.value  && presentDay < dayInput.value){
-        daysIntervalAnimation;
-        monthsIntervalAnimation;
-        yearsIntervalAnimation;
+        const daysIntervalAnimation = setInterval((days) => {
+            daysNumberParagraph.innerHTML = `<p>${dayNumber} <span>days</span></p>`;
+            dayNumber += 1;
+            if (dayNumber > days) clearInterval(daysIntervalAnimation);
+        }, 30, calculatedDays); 
+
+        const monthsIntervalAnimation = setInterval((months) => {
+        monthsNumberParagraph.innerHTML = `<p>${monthNumber} <span>months</span></p>`;
+        monthNumber += 1;
+        if(monthNumber > months) clearInterval(monthsIntervalAnimation);
+        }, 30, calculatedMonths); 
+
+        const yearsIntervalAnimation = setInterval((years) => {
+            yearsNumberParagraph.innerHTML = `<p>${yearNumber} <span>years</span></p>`;
+            yearNumber += 1;
+            if(yearNumber > years) clearInterval(yearsIntervalAnimation);
+        }, 30, negativeChronoYears); 
         
     }else if(presentMonth < monthInput.value  && presentDay >= dayInput.value){
-        daysIntervalAnimation;
-        monthsIntervalAnimation;
-        yearsIntervalAnimation;
+        const daysIntervalAnimation = setInterval((days) => {
+            daysNumberParagraph.innerHTML = `<p>${dayNumber} <span>days</span></p>`;
+            dayNumber += 1;
+            if (dayNumber > days) clearInterval(daysIntervalAnimation);
+        }, 30, chronoDays); 
+
+        const monthsIntervalAnimation = setInterval((months) => {
+        monthsNumberParagraph.innerHTML = `<p>${monthNumber} <span>months</span></p>`;
+        monthNumber += 1;
+        if(monthNumber > months) clearInterval(monthsIntervalAnimation);
+        }, 30, calculatedMonths); 
+
+        const yearsIntervalAnimation = setInterval((years) => {
+            yearsNumberParagraph.innerHTML = `<p>${yearNumber} <span>years</span></p>`;
+            yearNumber += 1;
+            if(yearNumber > years) clearInterval(yearsIntervalAnimation);
+        }, 30, negativeChronoYears); 
 
     }else if(presentMonth >= monthInput.value  && presentDay < dayInput.value){
-        daysIntervalAnimation;
-        monthsIntervalAnimation;
-        yearsIntervalAnimation;
+        const daysIntervalAnimation = setInterval((days) => {
+            daysNumberParagraph.innerHTML = `<p>${dayNumber} <span>days</span></p>`;
+            dayNumber += 1;
+            if (dayNumber > days) clearInterval(daysIntervalAnimation);
+        }, 30, calculatedDays); 
+
+        const monthsIntervalAnimation = setInterval((months) => {
+        monthsNumberParagraph.innerHTML = `<p>${monthNumber} <span>months</span></p>`;
+        monthNumber += 1;
+        if(monthNumber > months) clearInterval(monthsIntervalAnimation);
+        }, 30, chronoMonths); 
+
+        const yearsIntervalAnimation = setInterval((years) => {
+            yearsNumberParagraph.innerHTML = `<p>${yearNumber} <span>years</span></p>`;
+            yearNumber += 1;
+            if(yearNumber > years) clearInterval(yearsIntervalAnimation);
+        }, 30, chronoYears); 
 
     }else{
-        daysIntervalAnimation;
-        monthsIntervalAnimation;
-        yearsIntervalAnimation;
+        const daysIntervalAnimation = setInterval((days) => {
+            daysNumberParagraph.innerHTML = `<p>${dayNumber} <span>days</span></p>`;
+            dayNumber += 1;
+            if (dayNumber > days) clearInterval(daysIntervalAnimation);
+        }, 30, chronoDays); 
+
+        const monthsIntervalAnimation = setInterval((months) => {
+        monthsNumberParagraph.innerHTML = `<p>${monthNumber} <span>months</span></p>`;
+        monthNumber += 1;
+        if(monthNumber > months) clearInterval(monthsIntervalAnimation);
+        }, 30, chronoMonths); 
+
+        const yearsIntervalAnimation = setInterval((years) => {
+            yearsNumberParagraph.innerHTML = `<p>${yearNumber} <span>years</span></p>`;
+            yearNumber += 1;
+            if(yearNumber > years) clearInterval(yearsIntervalAnimation);
+        }, 30, chronoYears); 
     }
-    
-    console.log(chronoDays, chronoMonths, chronoYears)
 }
 
 
