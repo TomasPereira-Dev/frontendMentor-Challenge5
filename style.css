@@ -54,15 +54,15 @@ body{
     
 }
 
-.input-container p{
+.input-title{
     font-size: .8em;
     letter-spacing: .2em;
-    color: hsl(0, 1%, 44%)
+    color: hsl(0, 1%, 44%);
 }
 
 input{
     font-size: 2em;
-    padding: .2em .5em .2em .5em;
+    padding: .3em .6em .3em .6em;
     border-radius: 10px;
     border: 1px solid hsl(0, 0%, 86%);
     outline: none;
@@ -95,6 +95,13 @@ input:focus{
 .year-input[aria-invalid="true"]{
     border: 1px solid hsl(0, 100%, 67%);
     caret-color: hsl(0, 100%, 67%);
+}
+
+.error-message{
+    font-style: italic;
+    font-weight: 400;
+    font-size: .8em;
+    color: hsl(0, 100%, 67%);
 }
 
 

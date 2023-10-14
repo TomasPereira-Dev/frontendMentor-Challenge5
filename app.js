@@ -1,4 +1,7 @@
 const inputs = document.querySelectorAll(".input");
+const inputTitleDay = document.querySelector(".day-input-title");
+const inputTitleMonth = document.querySelector(".month-input-title");
+const inputTitleYear = document.querySelector(".year-input-title");
 const dayInput = document.querySelector(".day-input");
 const monthInput = document.querySelector(".month-input");
 const yearInput = document.querySelector(".year-input");
@@ -17,66 +20,92 @@ const thirthyDayMonths = [4,6,9,11];
 
 const dayErrorMessage = document.createElement("p");
 dayErrorMessage.textContent = "Must be a valid day";
+dayErrorMessage.setAttribute("class", "error-message");
 dayInput.addEventListener("input", () => {
     if(dayInput.value < 1 || dayInput.value > 31){
         dayContainer.append(dayErrorMessage);
+        inputTitleDay.style.color = "hsl(0, 100%, 67%)"
     }else{
         dayErrorMessage.remove()
+        inputTitleDay.style.color = "hsl(0, 1%, 44%)"
     }
 });
 
 
 const monthErrorMessage = document.createElement("p");
 monthErrorMessage.textContent = "Must be a valid month";
+monthErrorMessage.setAttribute("class", "error-message");
 monthInput.addEventListener("input", () =>{
     if(monthInput.value > 12 || monthInput.value <= 0){
         monthContainer.append(monthErrorMessage);
+        inputTitleMonth.style.color = "hsl(0, 100%, 67%)"
     }else{
         monthErrorMessage.remove();
+        inputTitleMonth.style.color = "hsl(0, 1%, 44%)"
     }
 });
 
 const yearErrorMessage = document.createElement("p");
 yearErrorMessage.textContent = "Must be in the past";
+yearErrorMessage.setAttribute("class", "error-message");
 yearInput.addEventListener("input", () =>{
     if(yearInput.value > presentYear){
         yearContainer.append(yearErrorMessage);
+        inputTitleYear.style.color = "hsl(0, 100%, 67%)"
     }else{
         yearErrorMessage.remove();
+        inputTitleYear.style.color = "hsl(0, 1%, 44%)"
     }
 });
 
 const inputsArr = Array.from(inputs);
 const requiredError = document.createElement("p");
 requiredError.textContent = "This field is required";
+requiredError.setAttribute("class", "error-message");
 
 const dayAndMonthErrorMessage = document.createElement("p");
-dayAndMonthErrorMessage.textContent = "Must be a valid date"; 
+dayAndMonthErrorMessage.textContent = "Must be a valid date";
+dayAndMonthErrorMessage.setAttribute("class", "error-message"); 
 submitBtn.addEventListener("click", () => {
     for(let j = 0; j < thirthyDayMonths.length; j++){ 
-        console.log(`loop ${j}`)
         if(monthInput.value == thirthyDayMonths[j]){
             if(dayInput.value == 31){
                 dayContainer.append(dayAndMonthErrorMessage);
+                inputTitleDay.style.color = "hsl(0, 100%, 67%)"
             }else if(dayInput.value < 31 && dayInput.value > 1){
             dayAndMonthErrorMessage.remove();
+            inputTitleDay.style.color = "hsl(0, 1%, 44%)"
             }
         }
     }
 
+    let validityCount = 0;
     for(let k = 0; k < inputsArr.length; k++){
         let classes = inputsArr[k].classList;
+        
+
+        if(inputsArr[k].checkValidity()){
+            validityCount += 1;
+            console.log(validityCount)
+        }
+
+        if(validityCount == 3){
+            chronologicalAge();
+            validityCount = 0;
+        }
+
         if(!inputsArr[k].value && classes.contains("is-required")){
             inputsArr[k].parentElement.appendChild(requiredError.cloneNode(true));
+            inputsArr[k].parentElement.firstElementChild.style.color = "hsl(0, 100%, 67%)";
             classes.toggle("is-required");
+            
         }else if(inputsArr[k].value && !classes.contains("is-required")){
             classes.toggle("is-required");
             inputsArr[k].parentElement.lastChild.remove();
+            inputsArr[k].parentElement.firstElementChild.style.color = "hsl(0, 1%, 44%)";
         }
-        
-    }
-    chronologicalAge();
 
+    }
 })
 
 const chronologicalAge = () => {
